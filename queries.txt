@@ -1,0 +1,17 @@
+ P1 : Il n’y a pas de collision (i.e. deux véhicules circulants en sens inverse) sur le pont.
+A[] ((forall(i: id_vaa) forall(j: id_vapa) CarVAA(i).Cross || CarVAPA(j).Cross) imply
+(forall(k: id_vab) forall(z: id_vapb) CarVAB(k).Cross==0 && CarVAPB(z).Cross==0) and
+
+(forall(k: id_vab) forall(z: id_vapb) CarVAB(k).Cross || CarVAPB(z).Cross)imply
+(forall(i: id_vaa) forall(j: id_vapa) CarVAA(i).Cross==0 && CarVAPA(j).Cross==0) )
+
+P2 : Un véhicule qui arrive est certain de passer sur le pont à l’issue d’une durée bornée.
+A[] (forall(i:id_vaa) CarVAA(i).b imply CarVAA(i).h<=3 ||
+forall(j:id_vapa) CarVAPA(j).b imply CarVAPA(j).h <=3 ||
+forall(k:id_vab) CarVAB(k).b imply CarVAB(k).h<=3 ||
+forall(z:id_vapb) CarVAPB(z).b imply CarVAPB(z).h<=3)
+
+
+P3 : Un véhicule prioritaire qui arrive est certain de passer sur le pont à l’issue d’une
+durée bornée avant tout autre véhicule normal qui n’est pas encore entré sur le pont.
+A[] (forall(j:id_vapa) CarVAPA(j).b imply CarVAPA(j).h <=3 && forall(i: id_vaa) CarVAA(i).Cross==0)

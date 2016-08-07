@@ -1,0 +1,44 @@
+%start S
+
+S[SEM = <app(?vp, ?suj)>] -> NP[SEM=?suj] VP[SEM=?vp]
+
+VP[SEM=<app(?v, ?np)>] -> V[SEM=?v] NP[SEM=?np, GENRE=?genre, NOMBRE=?nombre]
+
+NP[SEM=?np, GENRE=?genre, NOMBRE=?nombre] -> Det[GENRE=?genre, NOMBRE=?nombre] NP[SEM=?np, GENRE=?genre, NOMBRE=?nombre]
+NP[SEM=?np, GENRE=?genre, NOMBRE=?nombre] -> Det[GENRE=?genre, NOMBRE=?nombre] N[SEM=?np, GENRE=?genre, NOMBRE=?nombre]
+# NP[SEM=<app(?n, ?adj)>, GENRE=?genre, NOMBRE=?nombre] -> N[SEM=?n, GENRE=?genre, NOMBRE=?nombre] Adj[SEM=?adj, GENRE=?genre, nombre=?nombre]
+# NP[SEM=?np, GENRE=?genre, NOMBRE=?nombre] -> Nprop[SEM=?np]
+
+
+NP[SEM=<app(?relation, ?n)>, GENRE=?genre, NOMBRE=?nombre] -> N[SEM=?n, GENRE=?genre, NOMBRE=?nombre] Gprelatif[SEM=?relation]
+Gprelatif[SEM=?vp] -> Prelatif VP[SEM=?vp]
+#Gprelatif[SEM=?s] -> Prelatif S[SEM=?s]
+
+Prelatif -> 'qui'
+Prelatif -> 'que'
+V[SEM=<\y.\x.tuer (x,y)>] -> 'tua'
+V[SEM=<\y.\x.etre (x,y)>] -> 'suis'|'es'|'est'|'sommes'|'etes'|'sont'
+V[SEM=<\y.\x.avoir (x,y)>] -> 'ai'|'as'|'a'|'avons'|'avez'|'ont'
+V[SEM=<\y.\x.devenir (x,y)>] -> 'deviens'|'deviens'|'devient'|'devenons'|'devenez'|'deviennent'
+V[SEM=<\y.\x.rester (x,y)>] -> 'reste'|'restes'|'reste'|'restons'|'restez'|'restent'
+V[SEM=<\y.\x.fumer (x,y)>] -> 'fume'|'fumes'
+V[SEM=<\y.\x.habiter (x,y)>] -> 'habite'
+V[SEM=<\y.\x.boire (x,y)>] -> 'boit'
+
+Nprop[SEM=<jean>] -> 'Jean'
+Nprop[SEM=<marie>] -> 'Marie'
+Nprop[SEM=<prince>] -> 'Prince'
+Nprop[SEM=<harper>] -> 'Harper'
+N[SEM=<the>, GENRE=m, NOMBRE=sg] -> 'the'
+N[SEM=<danois>, GENRE=m, NOMBRE=sg] -> 'danois'
+N[SEM=<suedois>, GENRE=m, NOMBRE=sg] -> 'suedois'
+N[SEM=<personne>, GENRE=f, NOMBRE=sg] -> 'personne'
+Det[GENRE=m, NOMBRE=sg] -> 'Le'|'le'|'Un'|'un'|'Du'|'du'|'de'|'l'|'L'
+Det[GENRE=f, NOMBRE=sg] -> 'La'|'la'| 'Une' | 'une'
+Det[GENRE=m, NOMBRE=pl] -> 'Les'|'les'|'Des'|'des'
+Det[GENRE=f, NOMBRE=pl] -> 'Les'|'les'|'Des'|'des'
+Adj[SEM=rouge, GENRE=?m, nombre=?sg] ->'rouge'
+Adj[SEM=bon, GENRE=?m, nombre=?sg] ->'bon'
+N[SEM=<maison>, GENRE=f, NOMBRE=sg] -> 'maison'
+
+
